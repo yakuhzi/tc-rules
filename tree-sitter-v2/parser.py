@@ -12,17 +12,10 @@ Language.build_library(
     'build/my-languages.so',
 
     # Include one or more languages
-    # Jonas
-    #[
-    #   '/Users/jonas/Documents/GitHub/tree-sitter-cpp',
-    #   '/Users/jonas/Documents/GitHub/tree-sitter-java',
-    #   '/Users/jonas/Documents/GitHub/tree-sitter-python'
-    #]
-    # Vivian
     [
-        '/home/vivi/src/tree-sitter-python',
-        '/home/vivi/src/tree-sitter-java',
-        '/home/vivi/src/tree-sitter-cpp'
+        'tree-sitter/tree-sitter-python',
+        'tree-sitter/tree-sitter-java',
+        'tree-sitter/tree-sitter-cpp'
     ]
 )
 
@@ -58,32 +51,32 @@ parser_cpp.set_language(CPP_LANGUAGE)
 
 class RuleSet:
     def __init__(self):
-        if not os.path.isfile("rules.json"):
+        if not os.path.isfile("codegen_sources/scripts/tc-rules/tree-sitter-v2/rules.json"):
             self.rules = {}
         else:
-            with open("rules.json") as file:
+            with open("codegen_sources/scripts/tc-rules/tree-sitter-v2/rules.json") as file:
                 self.rules = json.load(file)
                 print(f"Loading {len(self.rules)} rules ... Done ...")    
         
-        with open("keywords.json") as file:
+        with open("codegen_sources/scripts/tc-rules/tree-sitter-v2/keywords.json") as file:
             self.keywords = json.load(file)
 
-        if not os.path.isfile("tree-keywords.txt"):
+        if not os.path.isfile("codegen_sources/scripts/tc-rules/tree-sitter-v2/tree-keywords.txt"):
             self.tree_keywords = []
         else:
-            with open("tree-keywords.txt") as file:
+            with open("codegen_sources/scripts/tc-rules/tree-sitter-v2/tree-keywords.txt") as file:
                 self.tree_keywords = file.read().split(",")
                 print(f"Loading {len(self.tree_keywords)} keywords for parse tree ... Done ...")  
 
     def save_rules(self):
-        with open("rules.json", "a+") as file:
+        with open("codegen_sources/scripts/tc-rules/tree-sitter-v2/rules.json", "a+") as file:
             file.truncate(0)
             file.seek(0)
             json.dump(self.rules, file, indent=4)
 
 
     def save_keywords(self):
-        with open("tree-keywords.txt", "a+") as file:
+        with open("codegen_sources/scripts/tc-rules/tree-sitter-v2/tree-keywords.txt", "a+") as file:
             file.truncate(0)
             file.seek(0)
             length = len(self.tree_keywords)-1
@@ -467,5 +460,3 @@ def extract_operator(input_string):
                 #print("op", operator)
                 op.append(operator)
     return op if op else None
-
-
