@@ -15,7 +15,7 @@ if (a > b) {
     b = a % 2;
 }
 int j = 0;
-while (j < 10) {
+while (j < 5) {
     System.out.println(j);
     j = j + 1;
 }
