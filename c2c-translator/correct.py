@@ -69,7 +69,7 @@ def correct_code():
     translation = rule_set.translate_line(original_line, parser.JAVA)
     
     print(translated_dict)
-    translated_dict[affected_line] = translation[0]
+    translated_dict[affected_line] = translation[0][0]
     print(translated_dict)
     corrected_translation = ''.join(str(x) for x in translated_dict.values())
     print(corrected_translation)
