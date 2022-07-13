@@ -6,16 +6,15 @@ z = x + var_1
 a = 10 / 2
 a = 7 * 3
 b = False
-b = +b;
-a - b;
++b
+a - b
 a = a * b * x
 print("Hello world!")
 if a > b:
-    a = 10;
-    b = a % 2;
+    a = 10
+    b = a % 2
 
 j = 0
 while j < 5:
     print(j)
     j = j + 1
-
